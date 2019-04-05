@@ -34,6 +34,9 @@ bot.on('message', function (user, userID, channelID, message, evt)
       case 'baka':
         bot.sendMessage({to: channelID, message: 'no, ' + user +  ' is'});
         break;
+      case 'test':
+        bot.sendMessage({to: channelID, message: 'IT WORKS'})
+        break;
     }
   }
 });
