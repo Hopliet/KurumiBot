@@ -1,0 +1,11 @@
+{
+  "name": "greeter-bot",
+  "version": "0.0.0",
+  "description": "My First Discord Bot",
+  "main": "Bot.js",
+  "author": "Michiel Van Mol & Denis Song",
+  "dependencies": {
+    "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
+    "winston": "^3.2.1"
+  }
+}
