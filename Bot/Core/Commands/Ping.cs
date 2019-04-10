@@ -20,7 +20,13 @@ namespace DiscordBot.Core.Commands
         [Command("baka"), Alias("Baka", "BAKA", "bAKA"), Summary("Baka command")]
         public async Task RunBaka()
         {
-            await Context.Channel.SendMessageAsync($"No, {Context.User.Mention} is")
+            await Context.Channel.SendMessageAsync($"No, {Context.User.Mention} is");
+        }
+
+        [Command("stuck"), Alias("sensei", "Stuck", "Sensei")]
+        public async Task MentionSensei()
+        {
+            await Context.Channel.SendMessageAsync($"{Context.Guild.GetRole(562022584917426177)}");
         }
     }
 }
