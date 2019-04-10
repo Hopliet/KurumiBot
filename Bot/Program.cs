@@ -25,42 +25,42 @@ namespace DiscordBot
 {
     class Program
     {
-        private DiscordSocketClient Client;
-        private CommandService Commands;
+        private DiscordSocketClient client;
+        private CommandService commands;
 
-        static void Main(string[] args)
+        static void Main()
         //starts the bot
         => new Program().MainAsync().GetAwaiter().GetResult();
 
         private async Task MainAsync()
         {
             //configuring the client
-            Client = new DiscordSocketClient(new DiscordSocketConfig
+            client = new DiscordSocketClient(new DiscordSocketConfig
             {
                 //error handling, use debug only when programming not when hosting
                 LogLevel = LogSeverity.Debug
             });
 
             //configuring the commands
-            Commands = new CommandService(new CommandServiceConfig
+            commands = new CommandService(new CommandServiceConfig
             {
                 //Makes the commands not case sensitive
-                CaseSensitiveCommands = true,
+                CaseSensitiveCommands = false,
                 //Makes the program not wait on commands to be finished before running new commands
                 DefaultRunMode = RunMode.Async,
                 LogLevel = LogSeverity.Debug
             });
 
             //configuring the methods
-            Client.MessageReceived += Client_MessageReceived;
+            client.MessageReceived += Client_MessageReceived;
             //where to look for the commands
             /*await Commands.AddModuleAsync(Assembly.GetEntryAssembly());*/
-            await Commands.AddModulesAsync(assembly: Assembly.GetEntryAssembly(), services: null/*search everywhere in the project*/);
+            await commands.AddModulesAsync(assembly: Assembly.GetEntryAssembly(), services: null/*search everywhere in the project*/);
 
             //runs when bot is logged in succesfully
-            Client.Ready += Client_Ready;
+            client.Ready += Client_Ready;
             //runs whenever there is a log received
-            Client.Log += Client_Log;
+            client.Log += Client_Log;
 
             string token;
             using (var stream = new FileStream((Path.GetDirectoryName(Assembly.GetEntryAssembly().Location/*gets the file location of the bot*/ )).Replace(/*don't see the / as an escape character*/@"bin\Debug\netcoreapp2.2", @"Token\token.txt"), FileMode.Open, FileAccess.Read))
@@ -70,8 +70,8 @@ namespace DiscordBot
                 token = readToken.ReadToEnd();
             }
 
-            await Client.LoginAsync(TokenType.Bot, token);
-            await Client.StartAsync();
+            await client.LoginAsync(TokenType.Bot, token);
+            await client.StartAsync();
 
             //stop the bot from stopping
             await Task.Delay(-1);
@@ -87,7 +87,7 @@ namespace DiscordBot
         private async Task Client_Ready()
         {
             //sets the streaming text in discord
-            await Client.SetGameAsync("I am best bot :3"/*, "TwitchChannel", StreamType.Twitch*/);
+            await client.SetGameAsync("I am best bot :3"/*, "TwitchChannel", StreamType.Twitch*/);
         }
 
         //runs whenever someone sends a message in the chat that the bot can read
@@ -95,7 +95,7 @@ namespace DiscordBot
         {
             //configure the commands
             var message = messageParam as SocketUserMessage/*Gives more details about context and the user of the message*/;
-            var context = new SocketCommandContext(Client, message);
+            var context = new SocketCommandContext(client, message);
 
             //checking for false and empty commands
             if (context.Message == null || context.Message.Content == "") return;
@@ -104,9 +104,9 @@ namespace DiscordBot
 
             //configuring the prefix
             int argPos = 0;
-            if (!(message.HasStringPrefix("!", ref argPos) || message.HasMentionPrefix(Client.CurrentUser, ref argPos))) return;
+            if (!(message.HasStringPrefix("!", ref argPos) || message.HasMentionPrefix(client.CurrentUser, ref argPos))) return;
 
-            var results = await Commands.ExecuteAsync(context, argPos, null);
+            var results = await commands.ExecuteAsync(context, argPos, null);
             if (!results.IsSuccess)
                 Console.WriteLine($"{DateTime.Now} at Commands. Something went wrong with executing a command. Text: {context.Message.Content} | Error: {results.ErrorReason}");
         }
