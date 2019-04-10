@@ -11,22 +11,10 @@ namespace DiscordBot.Core.Commands
     public class Ping : ModuleBase<SocketCommandContext/*comes from MessageReceived*/>
     {
         //specifying a command in discord
-        [Command("Ping"), Alias("Check"), Summary("Test command")]
-        public async Task ReplyPing()
+        [Command("Ping"), Alias("Check", "ping"), Summary("Test command")]
+        public async Task RunTestCommand()
         {
             await Context.Channel.SendMessageAsync("ara ara, I am working now");
-        }
-
-        [Command("baka"), Summary("Baka command")]
-        public async Task ReplyBaka()
-        {
-            await Context.Channel.SendMessageAsync($"No, {Context.User.Mention} is");
-        }
-
-        [Command("stuck"), Alias("sensei", "mentor")]
-        public async Task MentionSensei()
-        {
-            await Context.Channel.SendMessageAsync($"{Context.Guild.GetRole(561965462918004737).Mention}");
         }
     }
 }
