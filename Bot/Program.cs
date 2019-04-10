@@ -7,6 +7,20 @@ using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
 
+
+/*
+ * This bot has been made and managed by:
+ * Michiel "Hopliet" Van Mol | michiel.vanmol@hotmail.com
+ * Denis "Toy" Song | denissong98@gmail.com
+ * 
+ * Supervised and supported by:
+ * Goran "Pardusus" Vandenbossche | 
+ * "KampMichi" | 
+ * 
+ * Special thanks to:
+ * Sjustein | https://www.youtube.com/channel/UCoC4QZeCMe7uf2ZMHambL8A
+*/
+
 namespace DiscordBot
 {
     class Program
