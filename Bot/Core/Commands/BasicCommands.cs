@@ -26,7 +26,7 @@ namespace DiscordBot.Core.Commands
         [Command("Sensei"), Alias("Mentor", "Stuck", "support")]
         public async Task MentionMentor()
         {
-            await Context.Channel.SendMessageAsync(Context.Guild.GetRole(561965462918004737).Mention);
+            await Context.Channel.SendMessageAsync(Context.Guild.GetRole(561965462918004737).Mention + " TASUKETE-KUDASAI");
         }
     }
 }
