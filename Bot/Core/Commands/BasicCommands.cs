@@ -23,7 +23,7 @@ namespace DiscordBot.Core.Commands
             await Context.Channel.SendMessageAsync($"No, {Context.User.Mention} is");
         }
 
-        [Command("stuck"), Alias("sensei", "Sensei", "mentor")]
+        [Command("stuck"), Alias("sensei", "mentor")]
         public async Task MentionSensei()
         {
             await Context.Channel.SendMessageAsync($"{Context.Guild.GetRole(561965462918004737).Mention}");
