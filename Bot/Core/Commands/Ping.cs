@@ -15,6 +15,7 @@ namespace DiscordBot.Core.Commands
         public async Task RunTestCommand()
         {
             await Context.Channel.SendMessageAsync("ara ara, I am working now");
+            //test
         }
     }
 }
