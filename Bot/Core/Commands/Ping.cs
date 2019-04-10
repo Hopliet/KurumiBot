@@ -16,5 +16,11 @@ namespace DiscordBot.Core.Commands
         {
             await Context.Channel.SendMessageAsync("ara ara, I am working now");
         }
+
+        [Command("baka"), Alias("Baka", "BAKA", "bAKA"), Summary("Baka command")]
+        public async Task RunBaka()
+        {
+            await Context.Channel.SendMessageAsync($"No, {Context.User.Mention} is")
+        }
     }
 }
