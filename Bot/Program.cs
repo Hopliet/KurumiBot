@@ -87,7 +87,7 @@ namespace DiscordBot
         private async Task Client_Ready()
         {
             //sets the streaming text in discord
-            await client.SetGameAsync("I am best bot :3"/*, "TwitchChannel", StreamType.Twitch*/);
+            await client.SetGameAsync("k! prefix | I am best bot :3"/*, "TwitchChannel", StreamType.Twitch*/);
         }
 
         //runs whenever someone sends a message in the chat that the bot can read
@@ -106,7 +106,7 @@ namespace DiscordBot
             int argPos = 0;
 
             //prefix !
-            if (message.HasStringPrefix("!", ref argPos) || message.HasMentionPrefix(client.CurrentUser, ref argPos /*|| variable that has a list of all commands that don't need a prefix*/))
+            if (message.HasStringPrefix("k!", ref argPos) || message.HasMentionPrefix(client.CurrentUser, ref argPos /*|| variable that has a list of all commands that don't need a prefix*/))
             {
                 //executes the with a prefix command
                 var results = await commands.ExecuteAsync(context, argPos, null);
