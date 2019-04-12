@@ -104,11 +104,19 @@ namespace DiscordBot
 
             //configuring the prefix
             int argPos = 0;
-            if (!(message.HasStringPrefix("!", ref argPos) || message.HasMentionPrefix(client.CurrentUser, ref argPos))) return;
 
-            var results = await commands.ExecuteAsync(context, argPos, null);
-            if (!results.IsSuccess)
-                Console.WriteLine($"{DateTime.Now} at Commands. Something went wrong with executing a command. Text: {context.Message.Content} | Error: {results.ErrorReason}");
+            //prefix !
+            if (message.HasStringPrefix("!", ref argPos) || message.HasMentionPrefix(client.CurrentUser, ref argPos /*|| variable that has a list of all commands that don't need a prefix*/))
+            {
+                //executes the with a prefix command
+                var results = await commands.ExecuteAsync(context, argPos, null);
+                if (!results.IsSuccess)
+                {
+                    Console.WriteLine($"{DateTime.Now} at Commands. Something went wrong with executing a command. Text: {context.Message.Content} | Error: {results.ErrorReason}");
+                }
+            }
+            //messages with no prefix
+            return;
         }
     }
 }
