@@ -14,8 +14,7 @@ using Discord.WebSocket;
  * Denis "Toy" Song | denissong98@gmail.com
  * 
  * Supervised and supported by:
- * Goran "Pardusus" Vandenbossche | 
- * "KampMichi" | 
+ * Goran "Pardusus" Vandenbossche
  * 
  * Special thanks to:
  * Sjustein | https://www.youtube.com/channel/UCoC4QZeCMe7uf2ZMHambL8A
